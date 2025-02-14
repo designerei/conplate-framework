@@ -1,0 +1,25 @@
+{
+    "name": "designerei/conplate-framework",
+    "type": "contao-bundle",
+    "require": {
+        "contao/core-bundle": "^5.3",
+        "terminal42/contao-pageimage": "^4.0"
+    },
+    "license": "LGPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "designerei\\ConplateFrameworkBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hendrik Bengs",
+            "email": "hben@designerei-werbeagentur.de",
+            "homepage": "https://designerei-werbeagentur.de",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "contao-manager-plugin": "designerei\\ConplateFrameworkBundle\\ContaoManager\\Plugin"
+    }
+}
