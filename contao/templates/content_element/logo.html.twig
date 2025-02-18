@@ -3,6 +3,6 @@
 {% block inner %}
     {% block image %}{% endblock %}
     {% block link %}
-        <a{{ link_attributes|default }}>{% block text %}<span>{{ text }}</span>{% endblock %}</a>
+        <a{{ link_attributes|default }}>{% block text %}<span>{{ text|default('Logo') }}</span>{% endblock %}</a>
     {% endblock %}
 {% endblock %}
