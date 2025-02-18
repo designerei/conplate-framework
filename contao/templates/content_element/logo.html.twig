@@ -1,0 +1,8 @@
+{% extends "@Contao/content_element/_base.html.twig" %}
+
+{% block inner %}
+    {% block image %}{% endblock %}
+    {% block link %}
+        <a{{ link_attributes|default }}>{% block text %}<span>{{ text }}</span>{% endblock %}</a>
+    {% endblock %}
+{% endblock %}
