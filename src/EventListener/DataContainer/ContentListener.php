@@ -16,13 +16,33 @@ class ContentListener
 
         #[Autowire('%conplate.content.headline_style.reference%')]
         private $headlineStyleReference,
+
+        #[Autowire('%conplate.content.button_style.options%')]
+        private $buttonStyleOptions,
+
+        #[Autowire('%conplate.content.button_style.reference%')]
+        private $buttonStyleReference,
+
+        #[Autowire('%conplate.content.button_size.options%')]
+        private $buttonSizeOptions,
+
+        #[Autowire('%conplate.content.button_size.reference%')]
+        private $buttonSizeReference,
     ) {}
 
     #[AsCallback(table: 'tl_content', target: 'config.onload')]
     public function __invoke(): void
     {
         $GLOBALS['TL_DCA']['tl_content']['fields']['headline']['options'] = $this->headlineOptions;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['sectionHeadline']['options'] = $this->headlineOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['headlineStyle']['options'] = $this->headlineStyleOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['headlineStyle']['reference'] = $this->headlineStyleReference;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['sectionHeadlineStyle']['options'] = $this->headlineStyleOptions;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['sectionHeadlineStyle']['reference'] = $this->headlineStyleReference;
+
+        $GLOBALS['TL_DCA']['tl_content']['fields']['buttonStyle']['options'] = $this->buttonStyleOptions;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['buttonStyle']['reference'] = $this->buttonStyleReference;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['buttonSize']['options'] = $this->buttonSizeOptions;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['buttonSize']['reference'] = $this->buttonSizeReference;
     }
 }
