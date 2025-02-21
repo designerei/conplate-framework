@@ -101,20 +101,16 @@ $GLOBALS['TL_DCA'][$table]['fields']['buttonClass'] = [
 
 $GLOBALS['TL_DCA'][$table]['fields']['buttonStyle'] = [
     'inputType' => 'select',
-    'default' => '',
     'eval' => [
-        'tl_class' => 'w50',
-        'includeBlankOption' => true
+        'tl_class' => 'w50'
     ],
     'sql' => "varchar(32) NOT NULL default"
 ];
 
 $GLOBALS['TL_DCA'][$table]['fields']['buttonSize'] = [
     'inputType' => 'select',
-    'default' => '',
     'eval' => [
         'tl_class' => 'w50',
-        'includeBlankOption' => true
     ],
     'sql' => "varchar(32) NOT NULL default"
 ];
