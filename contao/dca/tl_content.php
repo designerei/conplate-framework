@@ -6,7 +6,7 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
 $table = ContentModel::getTable();
 
 // fields
-$GLOBALS['TL_DCA'][$table]['subpalettes']['displayAsButton'] = 'buttonStyle,buttonClass,buttonSize,fullWidth';
+$GLOBALS['TL_DCA'][$table]['subpalettes']['displayAsButton'] = 'buttonStyle,buttonSize,fullWidth';
 
 
 // palettes
@@ -89,14 +89,6 @@ $GLOBALS['TL_DCA'][$table]['fields']['multiSelectable'] = [
         'tl_class'=>'w50'
     ],
     'sql' => "char(1) NOT NULL default ''"
-];
-
-$GLOBALS['TL_DCA'][$table]['fields']['buttonClass'] = [
-    'inputType' => 'text',
-    'eval' => [
-        'tl_class' => 'w50'
-    ],
-    'sql' => "varchar(255) NOT NULL default ''"
 ];
 
 $GLOBALS['TL_DCA'][$table]['fields']['buttonStyle'] = [
