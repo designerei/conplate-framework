@@ -35,6 +35,11 @@ PaletteManipulator::create()
     ->applyToPalette('hyperlink', 'tl_content')
 ;
 
+PaletteManipulator::create()
+    ->addField(['responsiveImage', 'aspectRatio', 'figureWidth'], 'source_legend', PaletteManipulator::POSITION_APPEND)
+    ->applyToPalette('image', 'tl_content')
+;
+
 $GLOBALS['TL_DCA'][$table]['palettes']['logo'] = '
     {type_legend},type;
     {template_legend:hide},customTpl;
@@ -116,4 +121,39 @@ $GLOBALS['TL_DCA'][$table]['fields']['displayAsButton'] = [
     ],
     'sql' => "char(1) NOT NULL default ''"
 ];
+
+$GLOBALS['TL_DCA'][$table]['fields']['responsiveImage'] = [
+    'inputType' => 'checkbox',
+    'default'  => '1',
+    'eval' => [
+        'tl_class'=>'w50 m12'
+    ],
+    'sql' => "char(1) NOT NULL default '1'"
+];
+
+$GLOBALS['TL_DCA'][$table]['fields']['figureWidth'] = [
+    'exclude' => true,
+    'inputType' => 'inputUnit',
+    'options' => ['px', 'rem', 'em', '%'],
+    'eval' => [
+        'rgxp'=>'digit_auto_inherit',
+        'maxlength' => 4,
+        'tl_class'=>'w50'
+    ],
+    'sql' => "varchar(64) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA'][$table]['fields']['aspectRatio'] = [
+    'exclude' => true,
+    'inputType' => 'select',
+    'eval' => [
+        'tl_class' => 'w50',
+        'multiple' => true,
+        'size' => '10',
+        'chosen' => true,
+        'mandatory' => false
+    ],
+    'sql' => "text NULL"
+];
+
 
