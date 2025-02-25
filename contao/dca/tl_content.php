@@ -22,6 +22,12 @@ foreach ($palettes as $palette) {
             ->addField('headlineStyle', 'headline')
             ->applyToPalette($palette, $table)
         ;
+
+        PaletteManipulator::create()
+            ->addLegend('spacing_legend', 'expert_legend', PaletteManipulator::POSITION_BEFORE)
+            ->addField('spacing', 'spacing_legend', PaletteManipulator::POSITION_APPEND)
+            ->applyToPalette($palette, $table)
+        ;
     }
 }
 
@@ -147,7 +153,20 @@ $GLOBALS['TL_DCA'][$table]['fields']['aspectRatio'] = [
     'exclude' => true,
     'inputType' => 'select',
     'eval' => [
-        'tl_class' => 'w50',
+        'tl_class' => 'w50 w50h autoheight',
+        'multiple' => true,
+        'size' => '10',
+        'chosen' => true,
+        'mandatory' => false
+    ],
+    'sql' => "text NULL"
+];
+
+$GLOBALS['TL_DCA'][$table]['fields']['spacing'] = [
+    'exclude' => true,
+    'inputType' => 'select',
+    'eval' => [
+        'tl_class' => 'w50 w50h autoheight',
         'multiple' => true,
         'size' => '10',
         'chosen' => true,

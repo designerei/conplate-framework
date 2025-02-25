@@ -3,23 +3,22 @@
 namespace designerei\ConplateFrameworkBundle\EventListener\DataContainer;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
-use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
-use designerei\ConplateFrameworkBundle\TailwindBridge\UtilityClassesGenerator;
+use designerei\ConplateFrameworkBundle\TailwindBridge\UtilityClassesBuilder;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use designerei\ConplateFrameworkBundle\TailwindBridge\SafelistGenerator;
 
 class DcaFieldsListener
 {
     public function __construct(
-        private readonly SafelistGenerator $safelistGenerator,
+        private readonly UtilityClassesBuilder $utilityClassesBuilder,
 
-        private readonly UtilityClassesGenerator $utilityClassesGenerator,
+        #[Autowire('%conplate.tailwind_bridge.layout.aspect_ratio%')]
+        private $aspectRatioValues,
+
+        #[Autowire('%conplate.tailwind_bridge.core.spacing%')]
+        private $spacingValues,
 
         #[Autowire('%conplate.dca_fields.headline.options%')]
         private $headlineOptions,
-
-        #[Autowire('%conplate.tailwind_bridge.layout.aspect_ratio%')]
-        private $aspectRatioOptions,
 
         #[Autowire('%conplate.dca_fields.headline_style.options%')]
         private $headlineStyleOptions,
@@ -67,13 +66,14 @@ class DcaFieldsListener
     #[AsCallback(table: 'tl_content', target: 'config.onload')]
     public function contentListener(): void
     {
-        $GLOBALS['TL_DCA']['tl_content']['fields']['aspectRatio']['options'] = $this->utilityClassesGenerator->generateResponsiveClasses($this->aspectRatioOptions);
+        $GLOBALS['TL_DCA']['tl_content']['fields']['aspectRatio']['options'] = $this->utilityClassesBuilder->build('aspect', $this->aspectRatioValues, true, true);
         $GLOBALS['TL_DCA']['tl_content']['fields']['headline']['options'] = $this->headlineOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['headlineStyle']['options'] = $this->headlineStyleOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['headlineStyle']['reference'] = $this->headlineStyleReference;
         $GLOBALS['TL_DCA']['tl_content']['fields']['sectionHeadline']['options'] = $this->headlineOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['sectionHeadlineStyle']['options'] = $this->headlineStyleOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['sectionHeadlineStyle']['reference'] = $this->headlineStyleReference;
+        $GLOBALS['TL_DCA']['tl_content']['fields']['spacing']['options'] = $this->utilityClassesBuilder->build(['m', 'mx', 'my', 'mt', 'mb', 'ml', 'mr', 'p', 'px', 'py', 'pt', 'pb', 'pl', 'pr'], $this->spacingValues, true, true);
         $GLOBALS['TL_DCA']['tl_content']['fields']['buttonStyle']['options'] = $this->buttonStyleOptions;
         $GLOBALS['TL_DCA']['tl_content']['fields']['buttonStyle']['reference'] = $this->buttonStyleReference;
         $GLOBALS['TL_DCA']['tl_content']['fields']['buttonStyle']['default'] = $this->buttonStyleDefault;
@@ -91,11 +91,5 @@ class DcaFieldsListener
         $GLOBALS['TL_DCA']['tl_article']['fields']['containerSize']['reference'] = $this->containerSizeReference;
         $GLOBALS['TL_DCA']['tl_article']['fields']['containerSpacing']['options'] = $this->containerSpacingOptions;
         $GLOBALS['TL_DCA']['tl_article']['fields']['containerSpacing']['reference'] = $this->containerSpacingReference;
-    }
-
-    #[AsHook('initializeSystem')]
-    public function addOptionsToSafelist(): void
-    {
-        $this->safelistGenerator->addToSafelist($this->utilityClassesGenerator->generateResponsiveClasses($this->aspectRatioOptions));
     }
 }
