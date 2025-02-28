@@ -43,7 +43,11 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
         // create classes
         foreach ($namesArray as $name) {
             foreach ($valuesArray as $value) {
-                $classesArray[] = $name . '-' . $value;
+                if ($value === '') {
+                    $classesArray[] = $name;
+                } else {
+                    $classesArray[] = $name . '-' . $value;
+                }
             }
         }
 

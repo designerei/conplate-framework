@@ -3,6 +3,7 @@
 ## Features
 
 - Configure tailwind utilties and update dca fields via `conplate.yaml`; automated building of responsive classes and generated safelist file
+- Nested content element `layout` with options for flexbox and grid layout
 - Extra style field (`headlineStyle`) to define formatting of headlines within content elements
 - Spacing field (`spacing`) to define individual spacing for elements
 - Articles with options for background (`backgroundColor`), spacing (`containerSpacing`) and width (`containerSize`) 
