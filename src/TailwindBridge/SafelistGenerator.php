@@ -9,10 +9,10 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 class SafelistGenerator
 {
     public function __construct(
-        #[Autowire('%conplate.tailwind_bridge.core.safelist.dir%')]
+        #[Autowire('%conplate.tailwind_bridge.config.safelist.dir%')]
         private $dir,
 
-        #[Autowire('%conplate.tailwind_bridge.core.safelist.filename%')]
+        #[Autowire('%conplate.tailwind_bridge.config.safelist.filename%')]
         private $filename,
 
         #[Autowire('%kernel.project_dir%')]
