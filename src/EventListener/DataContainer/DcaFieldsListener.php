@@ -41,11 +41,13 @@ class DcaFieldsListener
 
             if (array_key_exists($field, $dcaFields)) {
                 foreach ($settings as $key => $value) {
-                    if ($key == 'options' && isset($value['utilities'])) {
-                        $options = $this->processUtilities($value['utilities']);
-                        $dcaFields[$field]['options'] = $options;
-                    } else {
-                        $dcaFields[$field][$key] = $value;
+                    if (!empty($value)) {
+                        if ($key == 'options' && isset($value['utilities'])) {
+                            $options = $this->processUtilities($value['utilities']);
+                            $dcaFields[$field]['options'] = $options;
+                        } else {
+                            $dcaFields[$field][$key] = $value;
+                        }
                     }
                 }
             }
