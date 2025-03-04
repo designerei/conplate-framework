@@ -28,7 +28,7 @@ class ContentElementReferenceListener
         if ($contentModel->spacing) {
             // set hasSpacing properties
             $templateProperties = $request->attributes->get('templateProperties');
-            $templateProperties['hasSpacing'] = 1;
+            $templateProperties['has_spacing'] = 1;
             $request->attributes->set('templateProperties', $templateProperties);
 
             // get spacing

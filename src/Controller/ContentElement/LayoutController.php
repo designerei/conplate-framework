@@ -50,8 +50,8 @@ class LayoutController extends AbstractContentElementController
             }
 
             $reference->attributes['templateProperties'] = [
-                'inLayoutElement' => 1,
-                'parentLayoutType' => $model->layoutType
+                'nested_in_layout' => 1,
+                'parent_layout_type' => $model->layoutType
             ];
 
             $nestedFragments[$i] = $reference;
