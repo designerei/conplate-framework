@@ -17,53 +17,24 @@ use Symfony\Component\HttpFoundation\Response;
 #[AsContentElement(category: 'miscellaneous', template: 'content_element/layout', nestedFragments: true)]
 class LayoutController extends AbstractContentElementController
 {
-    public function __construct(private readonly ContaoFramework $framework)
+    public function __construct(
+        private readonly ContaoFramework $framework)
     {
     }
 
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        $layoutType = $model->layoutType;
-        $layoutClasses = [];
-
-        if ($layoutType === 'flex') {
-            $layoutClasses = [
-                ['flex'],
-                $model->gap,
-                $model->alignment,
-                $model->flexDirection,
-                $model->flexWrap,
-            ];
-        }
-
-        if ($layoutType === 'grid') {
-            $layoutClasses = [
-                ['grid'],
-                $model->gridTemplateColumns,
-                $model->gridTemplateRows,
-                $model->gap,
-                $model->alignment,
-            ];
-        }
+        $layoutClasses = $this->getLayoutClasses($model);
 
         if (!empty($layoutClasses)) {
-            $classes = [];
-
-            foreach ($layoutClasses as $class) {
-                if (!empty($class)) {
-                   $classes[] = implode(' ', StringUtil::deserialize($class));
-                }
-            }
-        }
-
-        if (!empty($classes)) {
             $attributes = new HtmlAttributes()
-                ->addClass(implode(' ', $classes))
+                ->addClass($this->generateClasses($layoutClasses))
                 ->mergeWith($model->attributes)
             ;
-
             $template->set('attributes', $attributes);
         }
+
+        $nestedFragments = [];
 
         foreach ($template->get('nested_fragments') as $i => $reference) {
             $nestedModel = $reference->getContentModel();
@@ -72,11 +43,77 @@ class LayoutController extends AbstractContentElementController
                 $nestedModel = $this->framework->getAdapter(ContentModel::class)->findById($nestedModel);
             }
 
-            $nestedModel->inLayoutElement = 1;
-            $nestedModel->parentLayoutType = $model->layoutType;
-            $nestedModel->save();
+            $nestedClasses = $this->getNestedLayoutClasses($nestedModel, $model->layoutType);
+
+            if (!empty($nestedClasses)) {
+                $reference->attributes['classes'] = [$this->generateClasses($nestedClasses)];
+            }
+
+            $reference->attributes['templateProperties'] = [
+                'inLayoutElement' => 1,
+                'parentLayoutType' => $model->layoutType
+            ];
+
+            $nestedFragments[$i] = $reference;
         }
 
+        $template->set('nested_fragments', $nestedFragments);
+
         return $template->getResponse();
+    }
+
+    private function getLayoutClasses(ContentModel $model): array
+    {
+        return match ($model->layoutType) {
+            'flex' => [
+                ['flex'],
+                $model->gap,
+                $model->alignment,
+                $model->flexDirection,
+                $model->flexWrap,
+            ],
+            'grid' => [
+                ['grid'],
+                $model->gridTemplateColumns,
+                $model->gridTemplateRows,
+                $model->gap,
+                $model->alignment,
+            ],
+            default => [],
+        };
+    }
+
+    private function getNestedLayoutClasses(ContentModel $nestedModel, string $parentLayoutType): array
+    {
+        return match ($parentLayoutType) {
+            'flex' => [
+                $nestedModel->flexBasis,
+                $nestedModel->flex,
+                $nestedModel->flexGrow,
+                $nestedModel->flexShrink,
+                $nestedModel->order,
+                $nestedModel->alignmentSelf,
+            ],
+            'grid' => [
+                $nestedModel->gridColumn,
+                $nestedModel->gridRow,
+                $nestedModel->order,
+                $nestedModel->alignmentSelf,
+            ],
+            default => [],
+        };
+    }
+
+    private function generateClasses(array $classes): string
+    {
+        $strClasses = '';
+
+        foreach ($classes as $class) {
+            if(isset($class)) {
+                $strClasses .= ' ' . implode(' ', StringUtil::deserialize($class));
+            }
+        }
+
+        return ltrim($strClasses);
     }
 }
