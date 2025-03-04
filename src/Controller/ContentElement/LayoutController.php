@@ -80,7 +80,8 @@ class LayoutController extends AbstractContentElementController
                 $model->alignment,
             ],
             'container' => [
-                $model->containerSize
+                $model->containerSize,
+                $model->containerCenter ? 'mx-auto' : '',
             ],
             default => [],
         };
