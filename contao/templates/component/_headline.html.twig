@@ -4,7 +4,7 @@
     {% set headline = headline|default(_context)|merge({
         attributes: attrs()
             .addClass(data.headlineStyle|default)
-            .mergeWith(headline.attributes)
+            .mergeWith(headline.attributes|default)
     }) %}
     {{ parent() }}
 {% endblock %}
