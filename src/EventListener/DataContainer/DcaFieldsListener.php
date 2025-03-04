@@ -65,8 +65,8 @@ class DcaFieldsListener
                     $collection[] = $this->utilityClassesBuilder->build(
                         $values['name'],
                         $values['value'],
-                        $values['responsive'] ?? true,
-                        $values['safelist'] ?? true);
+                        $values['responsive'] ?? true
+                    );
                 }
             }
         }

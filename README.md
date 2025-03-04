@@ -1,5 +1,11 @@
 # conplate-framework
 
+## Commands
+
+Generate safelist based on configured utilities
+
+`console conplate:generate-safelist`
+
 ## Features
 
 - Configure tailwind utilties and update dca fields via `conplate.yaml`; automated building of responsive classes and generated safelist file

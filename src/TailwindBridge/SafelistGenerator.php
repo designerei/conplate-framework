@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace designerei\ConplateFrameworkBundle\TailwindBridge;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 class SafelistGenerator
 {

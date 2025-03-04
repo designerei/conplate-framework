@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
         private readonly SafelistGenerator $safelistGenerator
     ) {}
 
-    public function build(array|string $names, array|string $values, bool $responsive, bool $safelist): array
+    public function build(array|string $names, array|string $values, bool $responsive = false , bool $safelist = false): array
     {
         $namesArray = [];
         $valuesArray = [];

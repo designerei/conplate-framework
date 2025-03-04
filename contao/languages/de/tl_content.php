@@ -29,6 +29,8 @@ $GLOBALS['TL_LANG']['tl_content']['alignmentSelf'] = ['Ausrichtung', 'Hier könn
 $GLOBALS['TL_LANG']['tl_content']['flexBasis'] = ['Breite (Flex)', 'Hier können Sie die Breite des Elements definieren.'];
 $GLOBALS['TL_LANG']['tl_content']['flexGrow'] = ['Wachstumsverhalten (Flex)', 'Hier können Sie das Wachstumsverhalten des Elements festlegen.'];
 $GLOBALS['TL_LANG']['tl_content']['flexShrink'] = ['Schrumpfverhalten (Flex)', 'Hier können Sie das Schrumpfverhalten des Elements festlegen.'];
+$GLOBALS['TL_LANG']['tl_content']['containerSize'] = ['Breite des Containers', 'Hier können Sie die maximale Breite des Containers festlegen.'];
+$GLOBALS['TL_LANG']['tl_content']['containerCenter'] = ['Container zentrieren', 'Hier können Sie festlegen ob der Container horizontal zentriert werden soll.'];
 
 
 

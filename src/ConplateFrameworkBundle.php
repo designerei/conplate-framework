@@ -131,6 +131,9 @@ class ConplateFrameworkBundle extends AbstractBundle
                         ->scalarPrototype()->end()
                         ->defaultValue([])
                     ->end()
+                    ->booleanNode('responsive')
+                        ->defaultNull()
+                    ->end()
                 ->end()
             ->end()
         ;

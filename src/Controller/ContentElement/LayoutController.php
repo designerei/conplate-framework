@@ -79,6 +79,9 @@ class LayoutController extends AbstractContentElementController
                 $model->gap,
                 $model->alignment,
             ],
+            'container' => [
+                $model->containerSize
+            ],
             default => [],
         };
     }
@@ -109,8 +112,13 @@ class LayoutController extends AbstractContentElementController
         $strClasses = '';
 
         foreach ($classes as $class) {
-            if(isset($class)) {
-                $strClasses .= ' ' . implode(' ', StringUtil::deserialize($class));
+            if(!empty($class)) {
+                $class = StringUtil::deserialize($class);
+                if (is_array($class)) {
+                    $strClasses .= ' ' . implode(' ', $class);
+                } else {
+                    $strClasses .= ' ' . $class;
+                }
             }
         }
 

@@ -11,7 +11,7 @@ $GLOBALS['TL_DCA'][$table]['palettes']['__selector__'][] = 'layoutType';
 
 // subpalettes
 $GLOBALS['TL_DCA'][$table]['subpalettes']['displayAsButton'] = 'buttonStyle,buttonSize,fullWidth';
-$GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_container'] = '';
+$GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_container'] = 'containerSize,containerCenter';
 $GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_grid'] = 'gridTemplateColumns,gridTemplateRows,gap,alignment';
 $GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_flex'] = 'gap,alignment,flexDirection,flexWrap';
 
@@ -171,6 +171,25 @@ $GLOBALS['TL_DCA'][$table]['fields']['layoutType'] = [
     'reference' => ['container' => 'Container', 'grid' => 'Grid', 'flex' => 'Flexbox'],
     'sql' => "varchar(16) NOT NULL default 'container'"
 ];
+
+$GLOBALS['TL_DCA'][$table]['fields']['containerSize'] = [
+    'exclude' => true,
+    'inputType' => 'select',
+    'eval' => [
+        'includeBlankOption'=>true,
+        'tl_class'=>'w50 clr',
+    ],
+    'sql' => "varchar(32) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA'][$table]['fields']['containerCenter'] = [
+    'inputType' => 'checkbox',
+    'eval' => [
+        'tl_class' => 'w50 m12'
+    ],
+    'sql' => "char(1) NOT NULL default ''"
+];
+
 
 $commonUtiltityClassField = [
     'inputType' => 'select',
