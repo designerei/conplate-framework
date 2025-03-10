@@ -36,8 +36,13 @@ class ContentElementReferenceListener
 
             // set spacing
             $classes = $request->attributes->get('classes');
-            $classes = [$spacing];
-            $request->attributes->set('classes', $classes);
+            $request->attributes->set('classes', [$spacing]);
+        }
+
+        // headingStyle
+        if ($contentModel->headlineStyle) {
+            $classes = $request->attributes->get('classes');
+            $request->attributes->set('classes', [$contentModel->headlineStyle]);
         }
     }
 }
