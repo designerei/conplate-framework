@@ -1,5 +1,6 @@
-{% extends "@Contao/content_element/_base.html.twig" %}
+{% extends contao.has_backend_user ? "@Contao/content_element/_base.html.twig" : "@Contao/content_element/_empty.html.twig" %}
 
 {% block content %}
     {{ note|encode_email|raw }}
 {% endblock %}
+
