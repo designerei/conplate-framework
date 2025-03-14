@@ -31,6 +31,7 @@ $GLOBALS['TL_LANG']['tl_content']['flexGrow'] = ['Wachstumsverhalten (Flex)', 'H
 $GLOBALS['TL_LANG']['tl_content']['flexShrink'] = ['Schrumpfverhalten (Flex)', 'Hier können Sie das Schrumpfverhalten des Elements festlegen.'];
 $GLOBALS['TL_LANG']['tl_content']['containerSize'] = ['Breite des Containers', 'Hier können Sie die maximale Breite des Containers festlegen.'];
 $GLOBALS['TL_LANG']['tl_content']['containerCenter'] = ['Container zentrieren', 'Hier können Sie festlegen ob der Container horizontal zentriert werden soll.'];
+$GLOBALS['TL_LANG']['tl_content']['editorNote'] = ['Anmerkung', 'Sie können HTML-Tags verwenden, um den Text zu formatieren.'];
 
 
 

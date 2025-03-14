@@ -42,7 +42,17 @@ $GLOBALS['TL_DCA'][$table]['palettes']['divider'] = '
 $GLOBALS['TL_DCA'][$table]['palettes']['layout'] = '
     {type_legend},type;
     {layout_legend},layoutType;
-    {template_legend:hide},customTpl;{protected_legend:hide},protected;
+    {template_legend:hide},customTpl;
+    {protected_legend:hide},protected;
+    {expert_legend:hide},cssID;
+    {invisible_legend:hide},invisible,start,stop'
+;
+
+$GLOBALS['TL_DCA'][$table]['palettes']['editor_note'] = '
+    {type_legend},title,type;
+    {text_legend},editorNote;
+    {template_legend:hide},customTpl;
+    {protected_legend:hide},protected;
     {expert_legend:hide},cssID;
     {invisible_legend:hide},invisible,start,stop'
 ;
@@ -190,6 +200,17 @@ $GLOBALS['TL_DCA'][$table]['fields']['containerCenter'] = [
     'sql' => "char(1) NOT NULL default ''"
 ];
 
+$GLOBALS['TL_DCA'][$table]['fields']['editorNote'] = [
+    'exclude' => true,
+    'inputType' => 'textarea',
+    'eval' => [
+        'mandatory' => true,
+        'basicEntities'=>true,
+        'decodeEntities'=>true,
+        'allowHtml'=>true,
+    ],
+    'sql' => "mediumtext NULL"
+];
 
 $commonUtiltityClassField = [
     'inputType' => 'select',
