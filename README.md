@@ -19,7 +19,7 @@ Generate safelist based on configured utilities
   - Logo element (`logo`)
   - Copyline element (change text globally within page settings) (`copyline`)
   - Divider element (`divider`)
-  - Editor note element (`editor_note`)
+  - Editor elements: Note (`editor_note`) and placeholder (`editor_placeholder`)
 - Extended image element (`image`)
   - Activate responsive mode (width: 100%)
   - Set aspect-ratio for images

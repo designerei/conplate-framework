@@ -51,8 +51,13 @@ $GLOBALS['TL_DCA'][$table]['palettes']['layout'] = '
 $GLOBALS['TL_DCA'][$table]['palettes']['editor_note'] = '
     {type_legend},title,type;
     {text_legend},editorNote;
-    {template_legend:hide},customTpl;
-    {protected_legend:hide},protected;
+    {expert_legend:hide},cssID;
+    {invisible_legend:hide},invisible,start,stop'
+;
+
+$GLOBALS['TL_DCA'][$table]['palettes']['editor_placeholder'] = '
+    {type_legend},title,type;
+    {layout_legend},aspectRatio;
     {expert_legend:hide},cssID;
     {invisible_legend:hide},invisible,start,stop'
 ;
