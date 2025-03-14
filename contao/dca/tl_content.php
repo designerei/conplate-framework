@@ -62,23 +62,6 @@ $GLOBALS['TL_DCA'][$table]['palettes']['editor_placeholder'] = '
     {invisible_legend:hide},invisible,start,stop'
 ;
 
-$palettes = array_keys($GLOBALS['TL_DCA'][$table]['palettes']);
-
-foreach ($palettes as $palette) {
-    if ($palette !== '__selector__') {
-        PaletteManipulator::create()
-            ->addField('headlineStyle', 'headline')
-            ->applyToPalette($palette, $table)
-        ;
-
-        PaletteManipulator::create()
-            ->addLegend('layout_legend', 'expert_legend', PaletteManipulator::POSITION_BEFORE)
-            ->addField('spacing', 'layout_legend', PaletteManipulator::POSITION_APPEND)
-            ->applyToPalette($palette, $table)
-        ;
-    }
-}
-
 PaletteManipulator::create()
     ->addField('multiSelectable', 'accordion_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('accordion', $table)
