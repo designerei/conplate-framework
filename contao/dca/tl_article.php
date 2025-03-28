@@ -7,7 +7,7 @@ $table = ArticleModel::getTable();
 
 PaletteManipulator::create()
     ->addLegend('theme_legend', 'template_legend', PaletteManipulator::POSITION_BEFORE)
-    ->addField(['backgroundColor', 'containerSize', 'containerSpacing'], 'theme_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField(['backgroundColor', 'containerSize', 'containerSpacing', 'containerClass'], 'theme_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('default', $table)
 ;
 
@@ -39,4 +39,12 @@ $GLOBALS['TL_DCA'][$table]['fields']['containerSpacing'] = [
         'tl_class'=>'w50',
     ],
     'sql' => "varchar(32) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA'][$table]['fields']['containerClass'] = [
+    'inputType' => 'text',
+    'eval' => [
+        'tl_class' => 'w50 m12'
+    ],
+    'sql' => "mediumtext NULL"
 ];
