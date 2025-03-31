@@ -1,7 +1,7 @@
 {% use '@Contao/component/_headline.html.twig' %}
 
 {% block headline_component %}
-    {% set headline = headline|merge({
+    {% set headline = headline|default(_context)|merge({
         'attributes': attrs()
             .addClass(data.headlineStyle|default)
             .mergeWith(headline.attributes|default)
