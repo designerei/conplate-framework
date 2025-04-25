@@ -40,6 +40,11 @@ class ImagesController extends CoreBundleImagesController
             $template->set('aspect_ratio', $aspectRatio);
         }
 
+        if ($model->borderRadius ?? null) {
+            $borderRadius = implode(' ', StringUtil::deserialize($model->borderRadius));
+            $template->set('border_radius', $borderRadius);
+        }
+
         return parent::getResponse($template, $model, $request);
     }
 }

@@ -73,7 +73,7 @@ PaletteManipulator::create()
 ;
 
 PaletteManipulator::create()
-    ->addField(['responsiveImage', 'aspectRatio', 'figureWidth'], 'source_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField(['responsiveImage', 'aspectRatio', 'figureWidth', 'borderRadius'], 'source_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('image', 'tl_content')
 ;
 
@@ -230,6 +230,7 @@ $utilityClassFields = [
     'flexShrink',
     'order',
     'alignmentSelf',
+    'borderRadius',
 ];
 
 foreach ($utilityClassFields as $field) {

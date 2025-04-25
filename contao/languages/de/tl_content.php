@@ -4,6 +4,7 @@ $GLOBALS['TL_LANG']['tl_content']['layout_legend'] = 'Layout-Einstellungen';
 $GLOBALS['TL_LANG']['tl_content']['buttonClass'] = ['Button-Klasse', 'Hier können Sie eine oder beliebig viele Klassen eingeben.'];
 $GLOBALS['TL_LANG']['tl_content']['buttonSize'] = ['Button-Größe', 'Hier können Sie die Größe des Buttons ändern.'];
 $GLOBALS['TL_LANG']['tl_content']['buttonStyle'] = ['Button-Style', 'Sie können aus verschiedenen Styles wählen.'];
+$GLOBALS['TL_LANG']['tl_content']['borderRadius'] = ['Ecken abrunden', 'Hier können Sie den Ecken-Radius des Elements festlegen.'];
 $GLOBALS['TL_LANG']['tl_content']['displayAsButton'] = ['Darstellung als Button', 'Ein Button anstatt des Link-Textes verwenden.'];
 $GLOBALS['TL_LANG']['tl_content']['fullWidth'] = ['Volle Breite', 'Das Element in voller Breite darstellen.'];
 $GLOBALS['TL_LANG']['tl_content']['headlineStyle'] = ['Style (Überschrift)', 'Hier können Sie den Style der Überschrift überschreiben.'];
