@@ -2,7 +2,7 @@
     "name": "designerei/conplate-framework",
     "type": "contao-bundle",
     "require": {
-        "contao/core-bundle": "^5.4"
+        "contao/core-bundle": "^5.5"
     },
     "license": "LGPL-3.0-or-later",
     "autoload": {
