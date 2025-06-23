@@ -26,7 +26,6 @@ class EditorController extends AbstractContentElementController
             }
 
             $template->set('note', $editorNote ?: '');
-
         }
 
         if ('editor_placeholder' === $this->getType()) {
