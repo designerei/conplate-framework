@@ -36,7 +36,8 @@ class ContentElementReferenceListener
 
             // set spacing
             $classes = $request->attributes->get('classes');
-            $request->attributes->set('classes', [$spacing]);
+            $merged = array_merge($classes, [$spacing]);
+            $request->attributes->set('classes', $merged);
         }
     }
 }
