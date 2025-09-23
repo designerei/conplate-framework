@@ -83,6 +83,10 @@ class LayoutController extends AbstractContentElementController
                 $model->containerSize,
                 $model->containerCenter ? 'mx-auto' : '',
             ],
+            'columns' => [
+                $model->columns,
+                $model->gap ?? 'gap-0',
+            ],
             default => [],
         };
     }
@@ -103,6 +107,9 @@ class LayoutController extends AbstractContentElementController
                 $nestedModel->gridRow,
                 $nestedModel->order,
                 $nestedModel->alignmentSelf,
+            ],
+            'columns' => [
+                $nestedModel->break,
             ],
             default => [],
         };

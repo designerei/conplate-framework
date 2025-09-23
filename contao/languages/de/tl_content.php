@@ -33,15 +33,5 @@ $GLOBALS['TL_LANG']['tl_content']['flexShrink'] = ['Schrumpfverhalten (Flex)', '
 $GLOBALS['TL_LANG']['tl_content']['containerSize'] = ['Breite des Containers', 'Hier können Sie die maximale Breite des Containers festlegen.'];
 $GLOBALS['TL_LANG']['tl_content']['containerCenter'] = ['Container zentrieren', 'Hier können Sie festlegen ob der Container horizontal zentriert werden soll.'];
 $GLOBALS['TL_LANG']['tl_content']['editorNote'] = ['Anmerkung', 'Sie können HTML-Tags verwenden, um den Text zu formatieren.'];
-
-
-
-
-
-
-
-
-
-
-
-
+$GLOBALS['TL_LANG']['tl_content']['columns'] = ['Spalten', 'Hier können Sie die Anzahl / Breite der Spalten der Kind-Elemente steuern.'];
+$GLOBALS['TL_LANG']['tl_content']['break'] = ['Umbruch', 'Hier können Sie festlegen, wie ein Umbruch vor, nach oder innerhalb eines Elements erfolgen soll.'];

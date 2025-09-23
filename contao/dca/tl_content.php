@@ -14,6 +14,7 @@ $GLOBALS['TL_DCA'][$table]['subpalettes']['displayAsButton'] = 'buttonStyle,butt
 $GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_container'] = 'containerSize,containerCenter';
 $GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_grid'] = 'gridTemplateColumns,gridTemplateRows,gap,alignment';
 $GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_flex'] = 'gap,alignment,flexDirection,flexWrap';
+$GLOBALS['TL_DCA'][$table]['subpalettes']['layoutType_columns'] = 'columns,gap';
 
 $GLOBALS['TL_DCA'][$table]['palettes']['logo'] = '
     {type_legend},type;
@@ -165,8 +166,8 @@ $GLOBALS['TL_DCA'][$table]['fields']['layoutType'] = [
         'mandatory' => false,
         'submitOnChange' => true,
     ],
-    'options' => ['container', 'grid', 'flex'],
-    'reference' => ['container' => 'Container', 'grid' => 'Grid', 'flex' => 'Flexbox'],
+    'options' => ['container', 'grid', 'flex', 'columns'],
+    'reference' => ['container' => 'Container', 'grid' => 'Grid-Layout', 'flex' => 'Flexbox-Layout', 'columns' => 'Spalten-Layout'],
     'sql' => "varchar(16) NOT NULL default 'container'"
 ];
 
@@ -231,6 +232,8 @@ $utilityClassFields = [
     'order',
     'alignmentSelf',
     'borderRadius',
+    'columns',
+    'break'
 ];
 
 foreach ($utilityClassFields as $field) {
