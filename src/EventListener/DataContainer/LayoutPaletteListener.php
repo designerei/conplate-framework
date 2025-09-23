@@ -27,17 +27,17 @@ class LayoutPaletteListener
 
         if ($parentRecord['layoutType'] == 'grid') {
             $palette = PaletteManipulator::create()
-                ->addField(['gridColumn', 'gridRow', 'order', 'alignmentSelf'], 'layout_legend', PaletteManipulator::POSITION_PREPEND)
+                ->addField(['gridColumn', 'gridRow', 'order', 'alignmentSelf'], 'layout_legend', PaletteManipulator::POSITION_APPEND)
                 ->applyToString($palette)
             ;
         } elseif ($parentRecord['layoutType'] == 'flex') {
             $palette = PaletteManipulator::create()
-                ->addField(['flexBasis', 'flex', 'flexGrow', 'flexShrink', 'order', 'alignmentSelf'], 'layout_legend', PaletteManipulator::POSITION_PREPEND)
+                ->addField(['flexBasis', 'flex', 'flexGrow', 'flexShrink', 'order', 'alignmentSelf'], 'layout_legend', PaletteManipulator::POSITION_APPEND)
                 ->applyToString($palette)
             ;
         } elseif ($parentRecord['layoutType'] == 'columns') {
             $palette = PaletteManipulator::create()
-                ->addField(['break'], 'layout_legend', PaletteManipulator::POSITION_PREPEND)
+                ->addField(['break'], 'layout_legend', PaletteManipulator::POSITION_APPEND)
                 ->applyToString($palette)
             ;
         }
