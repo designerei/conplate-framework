@@ -21,7 +21,7 @@ class ContentPaletteCallback
         // add field headlineStyle if fields headline exists
         if (str_contains($palette, 'headline')) {
              $palette = PaletteManipulator::create()
-                ->addField('headlineStyle', 'headline')
+                ->addField('headlineStyle', 'type_legend', PaletteManipulator::POSITION_APPEND)
                 ->applyToString($palette)
             ;
         }
