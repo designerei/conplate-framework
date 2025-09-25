@@ -64,18 +64,8 @@ $GLOBALS['TL_DCA'][$table]['palettes']['editor_placeholder'] = '
 ;
 
 PaletteManipulator::create()
-    ->addField('multiSelectable', 'accordion_legend', PaletteManipulator::POSITION_APPEND)
-    ->applyToPalette('accordion', $table)
-;
-
-PaletteManipulator::create()
     ->addField('displayAsButton', 'link_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('hyperlink', 'tl_content')
-;
-
-PaletteManipulator::create()
-    ->addField(['responsiveImage', 'aspectRatio', 'figureWidth', 'borderRadius'], 'source_legend', PaletteManipulator::POSITION_APPEND)
-    ->applyToPalette('image', 'tl_content')
 ;
 
 // fields
@@ -89,16 +79,7 @@ $GLOBALS['TL_DCA'][$table]['fields']['headlineStyle'] = [
     'sql' => "varchar(32) default ''"
 ];
 
-$GLOBALS['TL_DCA'][$table]['fields']['sectionHeadlineStyle'] = [
-    'exclude' => true,
-    'inputType' => 'select',
-    'eval' => [
-        'tl_class' => 'w50',
-        'includeBlankOption' => true,
-        'mandatory' => false
-    ],
-    'sql' => "text NULL"
-];
+$GLOBALS['TL_DCA'][$table]['fields']['sectionHeadlineStyle'] = $GLOBALS['TL_DCA'][$table]['fields']['headlineStyle'];
 
 $GLOBALS['TL_DCA'][$table]['fields']['multiSelectable'] = [
     'exclude' => true,
