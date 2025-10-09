@@ -2,11 +2,12 @@
 
 namespace designerei\ConplateFrameworkBundle\EventListener\DataContainer;
 
-use Contao\CoreBundle\DataContainer\Palette;
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
+use Contao\StringUtil;
 
-#[AsCallback(table: 'tl_content', target: 'config.onpalette')]
+#[AsCallback(table: 'tl_content', target: 'config.onpalette', priority: -10)]
 class ContentPaletteCallback
 {
     public function __invoke(string $palette, DataContainer $dc): string
@@ -17,54 +18,53 @@ class ContentPaletteCallback
             return $palette;
         }
 
-        $current_type = $currentRecord['type'];
-        $palette = new Palette($palette);
-
-        $palette->addLegend('style_legend', 'expert_legend', 'before');
-        $palette->addLegend('layout_child_legend', 'expert_legend', 'before');
-        $palette->addLegend('layout_legend', 'expert_legend', 'before');
-        $palette->addField('spacing', 'style_legend', 'append');
-
-        if ($palette->hasField('headline')) {
-            $palette->addField('headlineStyle', 'style_legend', 'append');
+        if ($this->hasField($palette, 'headline')) {
+            $palette = PaletteManipulator::create()
+                ->addLegend('style_legend', 'expert_legend', PaletteManipulator::POSITION_BEFORE)
+                ->addField('headlineStyle', 'style_legend', PaletteManipulator::POSITION_APPEND)
+                ->applyToString($palette)
+            ;
         }
 
-        if ($palette->hasField('sectionHeadline')) {
-            $palette->addField('sectionHeadlineStyle', 'section_legend', 'append');
+        if ($this->hasField($palette, 'sectionHeadline')) {
+            $palette = PaletteManipulator::create()
+                ->addField('sectionHeadlineStyle', 'section_legend', PaletteManipulator::POSITION_APPEND)
+                ->applyToString($palette)
+            ;
         }
 
-        if ($current_type == 'image') {
-            $palette->addField(['responsiveImage', 'aspectRatio', 'figureWidth', 'borderRadius'], 'source_legend', 'append');
+        if ($currentRecord['type'] == 'image') {
+            $palette = PaletteManipulator::create()
+                ->addField(['responsiveImage', 'aspectRatio', 'figureWidth', 'borderRadius'], 'source_legend', PaletteManipulator::POSITION_APPEND)
+                ->applyToString($palette)
+            ;
         }
 
-        if ($current_type == 'gallery') {
-            $palette->removeField(['perRow']);
-            $palette->addField(['aspectRatio', 'responsiveImage'], 'image_legend', 'append');
-            $palette->addField(['gridTemplateColumns,gap'], 'layout_list_legend', 'append');
+        if ($currentRecord['type'] == 'gallery') {
+            $palette = PaletteManipulator::create()
+                ->removeField(['perRow'])
+                ->addLegend('layout_list_legend', 'expert_legend', PaletteManipulator::POSITION_BEFORE)
+                ->addField(['aspectRatio', 'responsiveImage'], 'image_legend', PaletteManipulator::POSITION_APPEND)
+                ->addField(['gridTemplateColumns,gap'], 'layout_list_legend', PaletteManipulator::POSITION_APPEND)
+                ->applyToString($palette)
+            ;
         }
 
-        if ($current_type == 'accordion') {
-            $palette->addField('multiSelectable', 'accordion_legend', 'append');
+        if ($currentRecord['type'] == 'accordion') {
+            $palette = PaletteManipulator::create()
+                ->addField(['multiSelectable'], 'accordion_legend', PaletteManipulator::POSITION_APPEND)
+                ->applyToString($palette)
+            ;
         }
 
-        $parentRecord = $dc->getCurrentRecord($currentRecord['pid']);
+        return $palette;
+    }
 
-        if ($parentRecord || $parentRecord['type'] == 'layout') {
-            $layout_type = $parentRecord['layoutType'];
+    protected function hasField(string|array $palette, string $field): bool
+    {
+        $paletteStr = is_array($palette) ? (string) reset($palette) : (string) $palette;
+        $fields = StringUtil::trimsplit('[,;]', $paletteStr);
 
-            if ($layout_type == 'grid') {
-                $palette->addField(['gridColumn', 'gridRow', 'order', 'alignmentSelf'], 'layout_legend', 'append');
-            }
-            elseif ($layout_type == 'flex')
-            {
-                $palette->addField(['flexBasis', 'flex', 'flexGrow', 'flexShrink', 'order', 'alignmentSelf'], 'layout_legend', 'append');
-            }
-            elseif ($layout_type == 'columns')
-            {
-                $palette->addField(['break'], 'layout_legend', 'append');
-            }
-        }
-
-        return $palette->toString();
+        return in_array($field, $fields, true);
     }
 }

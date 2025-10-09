@@ -1,9 +1,0 @@
-{% extends "@Contao/content_element/_base.html.twig" %}
-
-{%- block inner %}
-    <p{{ paragraph_attributes|default }}>
-        {% block text %}<span{{ text_attributes|default }}>{{ text }}</span>{% endblock %}
-        {% block copyright %}<span{{ copyright_attributes|default }}>©</span>{% endblock %}
-        {% block year %}<span{{ year_attributes|default }}>{{ "now"|date("Y") }}</span>{% endblock %}
-    </p>
-{% endblock -%}

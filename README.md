@@ -1,23 +1,13 @@
 # conplate-framework
 
-## Commands
-
-Generate safelist based on configured utilities
-
-`console conplate:generate-safelist`
-
 ## Features
 
-- Configure tailwind utilties and update dca fields via `conplate.yaml`; automated building of responsive classes and generated safelist file
-- Nested content element `layout` with options for flexbox and grid layout
+- Configure tailwind utilties and update dca fields via `conplate.yaml`; automated building of responsive classes and generated safelist file via `designerei/contao-tailwind-bridge`
+- Nested content element `layout` with options for flexbox and grid layout and Spacing field (`spacing`) to define individual spacing for elements via `designerei/contao-layout`
 - Extra style field (`headlineStyle`) to define formatting of headlines within content elements
-- Spacing field (`spacing`) to define individual spacing for elements
 - Articles with options for background (`backgroundColor`), spacing (`containerSpacing`) and width (`containerSize`) 
-- Restrict selection of content elements and frontend modules in the backend
 - Extended accordion element (`accordion`) and added fields multi selectable multiSelectable; switched javascript handling from handorgel.js to alpinejs (Alpine UI Components)
 - Additional content elements
-  - Logo element (`logo`)
-  - Copyline element (change text globally within page settings) (`copyline`)
   - Divider element (`divider`)
   - Editor elements: Note (`editor_note`) and placeholder (`editor_placeholder`)
 - Extended image element (`image`)

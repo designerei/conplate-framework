@@ -6,7 +6,6 @@ namespace designerei\ConplateFrameworkBundle\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use Contao\StringUtil;
 
 class ConplateFrameworkExtension extends AbstractExtension
 {
