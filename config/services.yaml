@@ -7,10 +7,3 @@ services:
   designerei\ConplateFrameworkBundle\:
     resource: ../src
     exclude: ../src/{ContaoManager,DependencyInjection}
-
-  designerei\ConplateFrameworkBundle\Controller\ContentElement\ImagesController:
-    arguments:
-      - '@security.helper'
-      - '@contao.filesystem.virtual.files'
-      - '@contao.image.studio'
-      - '%contao.image.valid_extensions%'
